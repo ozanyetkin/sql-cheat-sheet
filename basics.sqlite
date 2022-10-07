@@ -1,0 +1,45 @@
+-- Create a table
+CREATE TABLE celebs (
+    id INTEGER, 
+    name TEXT, 
+    age INTEGER
+);
+
+-- Select all from data table
+SELECT * FROM celebs;
+
+-- Insert an element into table
+INSERT INTO celebs (id, name, age) 
+VALUES (1, 'Justin Bieber', 22); 
+
+INSERT INTO celebs (id, name, age) 
+VALUES (2, 'Beyonce Knowles', 33); 
+ 
+INSERT INTO celebs (id, name, age) 
+VALUES (3, 'Jeremy Lin', 26); 
+ 
+INSERT INTO celebs (id, name, age) 
+VALUES (4, 'Taylor Swift', 26); 
+
+-- Select specific attribute from table
+SELECT name FROM celebs;
+
+-- Alter table to add new column
+ALTER TABLE celebs 
+ADD COLUMN twitter_handle TEXT;
+
+-- Update the table to insert new data
+UPDATE celebs
+SET twitter_handle = '@taylorswift13'
+WHERE id = 4;
+
+-- Delete elements with condition
+DELETE FROM celebs 
+WHERE twitter_handle IS NULL;
+
+-- Create table with constraints
+ CREATE TABLE awards(
+    id INTEgER PRIMARY KEY,
+    recipient TEXT NOT NULL,
+    award_name TEXT DEFAULT 'Grammy'
+);
