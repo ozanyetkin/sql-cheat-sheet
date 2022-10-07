@@ -1,0 +1,73 @@
+-- It is possible to query multiple tables
+SELECT *
+FROM orders
+LIMIT 5;
+ 
+SELECT *
+FROM subscriptions
+LIMIT 5;
+ 
+SELECT * 
+FROM customers
+LIMIT 5;
+
+-- It is possible to combine two tables using JOIN
+SELECT *
+FROM orders
+JOIN customers
+    ON orders.customer_id = customers.customer_id;
+
+-- We can still filter the joined data tables
+SELECT *
+FROM orders
+JOIN subscriptions
+    ON orders.subscription_id = subscriptions.subscription_id
+    WHERE description = 'Fashion Magazine';
+
+-- Use LEFT JOIN to keep unmatched rows as NULL
+SELECT *
+FROM newspaper
+LEFT JOIN online
+    ON newspaper.id = online.id;
+
+-- Use foreign keys to perform inner joins on tables
+SELECT *
+FROM classes
+JOIN students
+    ON classes.id = students.class_id;
+
+-- Use CROSS JOIN to get all possible combinations
+SELECT shirts.shirt_color,
+    pants.pants_color
+FROM shirts
+CROSS JOIN pants;
+
+-- We can use cross join together with conditions
+SELECT month,
+    COUNT(*)
+FROM newspaper
+CROSS JOIN months
+WHERE start_month <= month AND end_month >= month
+GROUP BY month;
+
+-- Use UNION to stack two tables with same structure
+SELECT *
+FROM newspaper
+UNION
+SELECT *
+FROM online;
+
+-- Use WITH to assign name to a query and use it later
+WITH previous_query AS (
+    SELECT customer_id,
+        COUNT(subscription_id) AS 'subscriptions'
+    FROM orders
+    GROUP BY customer_id
+)
+
+SELECT customers.customer_name,
+    previous_query.subscriptions
+FROM customers
+JOIN previous_query
+    ON customers.customer_id = previous_query.customer_id;
+
