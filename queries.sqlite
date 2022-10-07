@@ -1,0 +1,82 @@
+-- Select specific columns
+SELECT name, genre, year
+FROM movies;
+
+-- Select specific columns with rename
+SELECT imdb_rating AS 'IMDb'
+FROM movies;
+
+-- Select unique values in columns
+SELECT DISTINCT genre 
+FROM movies;
+
+-- Select values with condition
+SELECT *
+FROM movies
+WHERE imdb_rating > 8;
+
+-- Select similar values with like
+SELECT * 
+FROM movies
+WHERE name LIKE 'Se_en';
+
+SELECT * 
+FROM movies
+WHERE name LIKE '%man%';
+
+SELECT * 
+FROM movies
+WHERE name LIKE 'The %';
+
+-- Select values with null condition
+SELECT name
+FROM movies 
+WHERE imdb_rating IS NOT NULL;
+
+-- Select values with between
+SELECT *
+FROM movies
+WHERE year BETWEEN 1990 AND 1999;
+
+-- Notice that it is not inclusive for letters
+SELECT *
+FROM movies
+WHERE name BETWEEN 'A' AND 'J';
+
+-- Logical operators can be used to merge conditions
+SELECT *
+FROM movies
+WHERE year BETWEEN 1970 AND 1979
+    AND imdb_rating > 8;
+
+SELECT *
+FROM movies
+WHERE year < 1985
+    AND genre = 'horror';
+
+-- Filtering and ordering is possible
+SELECT name, year
+FROM movies
+ORDER BY name;
+
+-- Reversing the order is possible with DESC
+SELECT *
+FROM movies
+WHERE imdb_rating > 8
+ORDER BY year DESC;
+
+-- It is possible to limit the number of results
+SELECT *
+FROM movies
+ORDER BY imdb_rating DESC
+LIMIT 3;
+
+-- Using CASE provides if else functionality
+SELECT name,
+    CASE
+        WHEN imdb_rating > 8 THEN 'Fantastic'
+        WHEN imdb_rating > 6 THEN 'Poorly Received'
+        ELSE 'Avoid at All Costs'
+    END AS 'Review'
+FROM movies;
+

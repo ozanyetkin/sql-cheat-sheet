@@ -38,7 +38,7 @@ DELETE FROM celebs
 WHERE twitter_handle IS NULL;
 
 -- Create table with constraints
- CREATE TABLE awards(
+CREATE TABLE awards (
     id INTEgER PRIMARY KEY,
     recipient TEXT NOT NULL,
     award_name TEXT DEFAULT 'Grammy'
