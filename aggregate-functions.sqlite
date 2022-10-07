@@ -1,0 +1,46 @@
+-- Use COUNT to find the number of elements
+SELECT COUNT(*)
+FROM fake_apps
+WHERE price = 0;
+
+-- Use SUM to find the summation
+SELECT SUM(downloads)
+FROM fake_apps;
+
+-- Use MAX to find the maximum
+SELECT MAX(price)
+FROM fake_apps;
+
+-- Use AVG to find the average
+SELECT AVG(price)
+FROM fake_apps;
+
+-- Use ROUND to round the numbers
+SELECT ROUND(price, 0)
+FROM fake_apps;
+
+-- Notice that you can combine functions
+SELECT ROUND(AVG(price), 2)
+FROM fake_apps;
+
+-- Use group by to combine data and avoid repetition
+SELECT year,
+    AVG(imdb_rating)
+FROM movies
+GROUP BY year
+ORDER BY year;
+
+-- It is possible to call variables with line numbers
+SELECT category, 
+    price,
+    AVG(downloads)
+FROM fake_apps
+GROUP BY 1, 2;
+
+-- We can filter groups (not rows) using HAVING phrase
+SELECT price, 
+    ROUND(AVG(downloads)),
+    COUNT(*)
+FROM fake_apps
+GROUP BY price
+HAVING COUNT(price) > 10;
